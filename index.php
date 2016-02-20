@@ -7,12 +7,17 @@
 <head>
 <meta charset="utf-8">
 <title></title> 
-<link rel="stylesheet" href="style.css" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+<link href="css/lightbox.css" rel="stylesheet">
 </head>
 <body>
-    
-    <script type="text/javascript" href="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <?php 
+    $allowed = array("png", "gif", "jpg", "jpeg");
+    $galerie = new Gallery("pic",$allowed);
+
+    $galerie->write();
+    ?>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/lightbox.js"></script>
 </body>
 </html>
