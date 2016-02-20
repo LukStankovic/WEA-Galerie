@@ -32,16 +32,15 @@
                 <div class="row">
                     <div class="col-md-5 con">
                         <label for="pic">Directory: </label>
-                        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; ?>">
-                        <input type="checkbox" name="ext[]" value="jpg" <?php foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
-                        <input type="checkbox" name="ext[]" value="png" <?php foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
-                        <input type="checkbox" name="ext[]" value="gif" <?php foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
+                        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; else echo "pic"?>">
+                        <input type="checkbox" name="ext[]" value="jpg" <?php if(isset($allowed)) foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
+                        <input type="checkbox" name="ext[]" value="png" <?php if(isset($allowed)) foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
+                        <input type="checkbox" name="ext[]" value="gif" <?php if(isset($allowed)) foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
                         
                     </div>
                     <div class="col-md-5 height">
-                        Height: <span><?php if(isset($height)) echo $height; ?></span>px 
-                        <input type="range" name="height" min="10" max="200" step="10" value="<?php 
-                         echo (isset($height)) ? $height : "100"; ?>">
+                        Height: <span><?php echo (isset($height)) ? $height : "100"; ?></span>px 
+                        <input type="range" name="height" min="10" max="200" step="10" value="<?php echo (isset($height)) ? $height : "100"; ?>">
                     </div>
                     <div class="col-md-2">
                         
@@ -54,7 +53,10 @@
             </form>  
         </div>
         <div class="gallery">
-            <?php $galerie->write(); ?>
+            <?php
+                if(isset($galerie))
+                    $galerie->write(); 
+            ?>
         </div>
         
     </div>
