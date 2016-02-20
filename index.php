@@ -4,6 +4,7 @@
     if(isset($_POST["submit"])){
         $conf["dir"]=$_POST["dir"];
         $conf["ext"]=$_POST["ext"];
+        $conf["height"]=$_POST["height"];
         setcookie("conf",serialize($conf),time() + (86400 * 7));
         header("Location: index.php");
     }
@@ -11,7 +12,8 @@
         $conf = unserialize($_COOKIE["conf"]);
         $allowed = $conf["ext"];
         $dir = $conf["dir"];
-        $galerie = new Gallery($conf["dir"],$allowed);
+        $height = $conf["height"];
+        $galerie = new Gallery($dir,$allowed,$height);
     }
 ?>
 <!doctype html>
@@ -24,11 +26,11 @@
 </head>
 <body>
     <form method="post">
-        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($conf["dir"])) echo $conf["dir"]; ?>">
-        <input type="checkbox" name="ext[]" value="jpg" <?php foreach($conf["ext"] as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
-        <input type="checkbox" name="ext[]" value="png" <?php foreach($conf["ext"] as $ext) if($ext == "png") echo "checked"; ?>> PNG
-        <input type="checkbox" name="ext[]" value="gif" <?php foreach($conf["ext"] as $ext) if($ext == "gif") echo "checked"; ?>> GIF
-        
+        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; ?>">
+        <input type="checkbox" name="ext[]" value="jpg" <?php foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
+        <input type="checkbox" name="ext[]" value="png" <?php foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
+        <input type="checkbox" name="ext[]" value="gif" <?php foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
+        <input type="range" name="height" min="10" max="200">
         <input id="submit" name="submit" type="submit" value="Odeslat" class="btn btn-primary">
     </form>    
     <?php $galerie->write(); ?>
