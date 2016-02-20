@@ -30,9 +30,9 @@
         <input type="checkbox" name="ext[]" value="jpg" <?php foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
         <input type="checkbox" name="ext[]" value="png" <?php foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
         <input type="checkbox" name="ext[]" value="gif" <?php foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
-        <input type="range" name="height" min="10" max="200">
+        <input type="range" name="height" min="10" max="200" step="10" value="<?php if(isset($height)) echo $height; ?>">
         <input id="submit" name="submit" type="submit" value="Odeslat" class="btn btn-primary">
-    </form>    
+    </form>
     <?php $galerie->write(); ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="js/lightbox.js"></script>
