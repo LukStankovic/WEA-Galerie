@@ -1,0 +1,17 @@
+/* line 1, /Users/lukstankovic/Weby/WEA/WEA-Galerie/css/style.sass */
+.config {
+  width: 100%;
+  line-height: 30px;
+  padding-top: 20px; }
+  /* line 5, /Users/lukstankovic/Weby/WEA/WEA-Galerie/css/style.sass */
+  .config .height input {
+    margin-top: 0px; }
+
+/* line 8, /Users/lukstankovic/Weby/WEA/WEA-Galerie/css/style.sass */
+.gallery {
+  margin-top: 50px; }
+  /* line 11, /Users/lukstankovic/Weby/WEA/WEA-Galerie/css/style.sass */
+  .gallery img {
+    margin: 5px; }
+
+/*# sourceMappingURL=style.css.map */

@@ -19,22 +19,54 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8">
-<title></title> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link href="css/lightbox.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Gallery</title> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/lightbox.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <form method="post">
-        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; ?>">
-        <input type="checkbox" name="ext[]" value="jpg" <?php foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
-        <input type="checkbox" name="ext[]" value="png" <?php foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
-        <input type="checkbox" name="ext[]" value="gif" <?php foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
-        <input type="range" name="height" min="10" max="200" step="10" value="<?php if(isset($height)) echo $height; ?>">
-        <input id="submit" name="submit" type="submit" value="Odeslat" class="btn btn-primary">
-    </form>
-    <?php $galerie->write(); ?>
+    <div class="container">
+        <div class="config">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-5 con">
+                        <label for="pic">Directory: </label>
+                        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; ?>">
+                        <input type="checkbox" name="ext[]" value="jpg" <?php foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
+                        <input type="checkbox" name="ext[]" value="png" <?php foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
+                        <input type="checkbox" name="ext[]" value="gif" <?php foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
+                        
+                    </div>
+                    <div class="col-md-5 height">
+                        Height: <span><?php if(isset($height)) echo $height; ?></span>px 
+                        <input type="range" name="height" min="10" max="200" step="10" value="<?php 
+                         echo (isset($height)) ? $height : "100"; ?>">
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <input id="submit" name="submit" type="submit" value="Show" class="btn btn-primary">
+                    </div>
+                </div>
+               
+                
+                
+            </form>  
+        </div>
+        <div class="gallery">
+            <?php $galerie->write(); ?>
+        </div>
+        
+    </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="js/lightbox.js"></script>
+    <script>
+    $(document).ready(function(){
+       $(".height input").change(function(){
+           var height = $(this).val()
+           $(".height span").html(height);
+       });
+    });
+    </script>
 </body>
 </html>
