@@ -5,7 +5,9 @@ class Gallery extends DirItems{
     protected $height;
     
     public function __construct($dir,$allowed,$height){
-        parent::__construct($dir);
+        if (file_exists($dir)) {
+            parent::__construct($dir);
+        }
         $this->allowed = $allowed;
         $this->height = $height;
     }

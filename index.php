@@ -13,6 +13,7 @@
         $allowed = $conf["ext"];
         $dir = $conf["dir"];
         $height = $conf["height"];
+        
         $galerie = new Gallery($dir,$allowed,$height);
     }
 ?>
@@ -32,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-5 con">
                         <label for="pic">Directory: </label>
-                        <input type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; else echo "pic"?>">
+                        <input class="dir" type="text" name="dir" placeholder="pic" value="<?php if(isset($dir)) echo $dir; else echo "pic"?>">
                         <input type="checkbox" name="ext[]" value="jpg" <?php if(isset($allowed)) foreach($allowed as $ext) if($ext == "jpg") echo "checked"; ?>> JPG
                         <input type="checkbox" name="ext[]" value="png" <?php if(isset($allowed)) foreach($allowed as $ext) if($ext == "png") echo "checked"; ?>> PNG
                         <input type="checkbox" name="ext[]" value="gif" <?php if(isset($allowed)) foreach($allowed as $ext) if($ext == "gif") echo "checked"; ?>> GIF
@@ -64,10 +65,11 @@
     <script src="js/lightbox.js"></script>
     <script>
     $(document).ready(function(){
-       $(".height input").change(function(){
-           var height = $(this).val()
+
+        $(".height input").change(function(){
+           var height = $(this).val();
            $(".height span").html(height);
-       });
+        });
     });
     </script>
 </body>
