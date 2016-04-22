@@ -16,6 +16,7 @@
         
         $galerie = new Gallery($dir,$allowed,$height);
     }
+
 ?>
 <!doctype html>
 <html lang="cs">
